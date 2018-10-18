@@ -1,0 +1,20 @@
+version: '3'
+services:
+    ldap:
+        image: osixia/openldap:1.2.2
+        volumes:
+            - ./slapd/database:/var/lib/ldap
+            - ./slapd/config:/etc/ldap/slapd.d
+            - ./slapd/certs:/container/service/slapd/assets/certs
+        ports:
+            - 389:389
+            - 80:80
+        environment:
+            - LDAP_ORGANISATION=KaiDianBao
+            - LDAP_ADMIN_PASSWORD=admin
+            - LDAP_DOMAIN=candypay.com
+            - LDAP_SERVERNAME=KDB
+            - LDAP_TLS=true
+            - LDAP_TLS_CRT_FILENAME=server.crt
+            - LDAP_TLS_KEY_FILENAME=server.key
+            - LDAP_TLS_CA_CRT_FILENAME=ca-bundle.crt
