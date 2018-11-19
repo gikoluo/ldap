@@ -1,6 +1,7 @@
 version: '3'
 services:
     ldap:
+        container_name: ldap
         image: osixia/openldap:1.2.2
         volumes:
             - ./slapd/database:/var/lib/ldap
@@ -18,3 +19,8 @@ services:
             - LDAP_TLS_CRT_FILENAME=server.crt
             - LDAP_TLS_KEY_FILENAME=server.key
             - LDAP_TLS_CA_CRT_FILENAME=ca-bundle.crt
+        networks:
+          - user
+networks:
+  user:
+    driver: bridge
