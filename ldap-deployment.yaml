@@ -4,6 +4,7 @@ metadata:
   name: ldap
   labels:
     app: ldap
+  namespace: auth
 spec:
   replicas: 1
   template:
